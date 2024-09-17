@@ -1,0 +1,44 @@
+#include <iostream>
+#include <cmath>
+
+
+using namespace std;
+
+class ZavdClass
+{
+	double a, b;
+public:
+	double Fn_b(double x, double y, double z)
+	{
+		b = pow(cos(atan((pow(x, 2) + y) / (z + 1))), 2) + (x / z) * exp(3 * x + y);
+		return b;
+	}
+	double Fn_a(double x, double y, double z)
+	{
+		a = (1 + sqrt(pow(sin(pow(fabs(x + y), 0.4)), 2))) / (2 + pow(b, 2) + pow(sin(pow(y - z, 3)), 2)) + tan(3 * x / z);
+		return a;
+	}
+
+};
+
+int main()
+{
+	double x_p = -1;
+	double x_k = 1;
+	double step = 0.2;
+	double y = 0.47 * 6;
+	double z = -1.32 * 6;
+	cout << "x" << "\t" << "a" << "\t\t" << "b" << endl;
+	cout << "------------------------------------------" << endl;
+
+	ZavdClass result;
+	for (double x = x_p; x <= x_k; x += step)
+	{
+		result.Fn_b(x, y, z);
+		result.Fn_a(x, y, z);
+		cout << x << "\t" << result.Fn_a(x,y,z) << "\t" << result.Fn_b(x,y,z) << endl;
+	}
+
+	return 0;
+
+}
